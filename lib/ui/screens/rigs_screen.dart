@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../state/rigs_controller.dart';
 import '../widgets/large_button.dart';
+import '../widgets/lure_icon.dart';
 
 class RigsScreen extends StatefulWidget {
   const RigsScreen({super.key});
@@ -40,6 +41,11 @@ class _RigsScreenState extends State<RigsScreen> {
                         return ListTile(
                           tileColor: Theme.of(context).colorScheme.surfaceVariant.withOpacity(0.3),
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                          leading: LureIcon(
+                            mode: rig.mode,
+                            lureType: rig.lureType,
+                            baitType: rig.baitType,
+                          ),
                           title: Text(rig.name ?? 'Rig #${rig.id}'),
                           subtitle: Text(rig.mode == 'Raubfisch'
                               ? '${rig.lureType ?? '-'} · ${rig.sizeCm ?? ''}cm · ${rig.weightG ?? ''}g'

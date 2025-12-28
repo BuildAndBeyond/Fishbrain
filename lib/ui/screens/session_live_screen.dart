@@ -7,6 +7,7 @@ import '../../state/rigs_controller.dart';
 import '../../state/session_controller.dart';
 import '../../storage/app_database.dart';
 import '../widgets/large_button.dart';
+import '../widgets/lure_icon.dart';
 import '../widgets/section_card.dart';
 
 class SessionLiveScreen extends StatelessWidget {
@@ -62,6 +63,15 @@ class SessionLiveScreen extends StatelessWidget {
                 Text('Aktives Rig', style: Theme.of(context).textTheme.titleMedium),
                 const SizedBox(height: 8),
                 Text(activeRig == null ? 'Keins gewählt' : _rigLabel(activeRig)),
+                if (activeRig != null) ...[
+                  const SizedBox(height: 12),
+                  LureIcon(
+                    mode: activeRig.mode,
+                    lureType: activeRig.lureType,
+                    baitType: activeRig.baitType,
+                    size: 44,
+                  ),
+                ],
               ],
             ),
           ),
@@ -123,6 +133,11 @@ class SessionLiveScreen extends StatelessWidget {
             const Text('Noch keine Rigs für diese Angelart. Erstelle eins im Rig-Menü.'),
           for (final rig in rigs)
             ListTile(
+              leading: LureIcon(
+                mode: rig.mode,
+                lureType: rig.lureType,
+                baitType: rig.baitType,
+              ),
               title: Text(rig.name ?? 'Rig #${rig.id}'),
               subtitle: Text(rig.mode == 'Raubfisch'
                   ? '${rig.lureType ?? '-'} · ${rig.sizeCm ?? ''}cm · ${rig.weightG ?? ''}g'
