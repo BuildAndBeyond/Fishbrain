@@ -156,7 +156,7 @@ class SessionLiveScreen extends StatelessWidget {
     bool hadCatch = false;
     String rating = 'mittel';
 
-    await showDialog(
+    final didEnd = await showDialog<bool>(
       context: context,
       builder: (ctx) {
         return StatefulBuilder(
@@ -198,13 +198,13 @@ class SessionLiveScreen extends StatelessWidget {
               ),
               actions: [
                 TextButton(
-                  onPressed: () => Navigator.pop(ctx),
+                  onPressed: () => Navigator.pop(ctx, false),
                   child: const Text('Abbrechen'),
                 ),
                 FilledButton(
                   onPressed: () async {
                     await controller.endSession(hadCatch: hadCatch, rating: rating);
-                    if (ctx.mounted) Navigator.pop(ctx);
+                    if (ctx.mounted) Navigator.pop(ctx, true);
                   },
                   child: const Text('Speichern'),
                 ),
@@ -215,7 +215,7 @@ class SessionLiveScreen extends StatelessWidget {
       },
     );
 
-    if (context.mounted) {
+    if (context.mounted && (didEnd ?? false)) {
       Navigator.popUntil(context, (route) => route.isFirst);
     }
   }
