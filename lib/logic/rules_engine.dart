@@ -78,7 +78,20 @@ List<Recommendation> _predatorRecommendations(
     ],
   );
 
-  return [first, second];
+  final third = Recommendation(
+    title: 'Techniken gezielt wechseln',
+    bullets: [
+      'Posenfischen für vorsichtige Räuber',
+      'Jerkbait bei aggressiven Phasen',
+      'Texas/Carolina-Rig für Kraut & Struktur',
+    ],
+    reasons: [
+      'Technikwechsel bringt oft den ersten Kontakt.',
+      'Je nach Wasserstand reagieren Fische unterschiedlich.',
+    ],
+  );
+
+  return [first, second, third];
 }
 
 List<Recommendation> _carpRecommendations(
